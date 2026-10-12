@@ -1,0 +1,98 @@
+@baseUrl = http://127.0.0.1:8000
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkxODI2MTI2LCJpYXQiOjE3OTE4MjQzMjYsImp0aSI6ImZmOGRlOGY4OGFhYzRiYzM5ODNhYjNlMThlNGM1ZGI5IiwidXNlcl9pZCI6IjEifQ.al5fr7EykOGFKbCGpYsoZjPXlS3J3Mb76QwP_yi9UPU
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5MTkwOTg5OSwiaWF0IjoxNzkxODIzNDk5LCJqdGkiOiI1MDgwZTY4YTEwNWI0ODI2OTYzYzI0ZTc3NTdiNWZmZiIsInVzZXJfaWQiOiIyIn0.3wWB2uTGNo_f8jiGtZm8dCXwta_mkvlCWlwfoHEyr6U
+
+### register a new user
+POST {{baseUrl}}/auth/register/
+Content-Type: application/json
+
+{
+    "email": "habib@gmail.com",
+    "first_name":"Habib",
+    "last_name":"Biswas",
+    "password": "admin123@?",
+    "password2": "admin123@?"
+}
+
+### login registered user
+
+
+POST {{baseUrl}}/auth/login/
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "admin123"
+}
+
+###
+
+POST {{baseUrl}}/auth/token/refresh/
+Content-Type: application/json
+
+{
+    "refresh": "{{refreshToken}}"
+}
+
+### all todo list of logged in user
+
+GET {{baseUrl}}/api/todos/
+Authorization: Bearer {{accessToken}}
+
+###create new todo
+
+POST {{baseUrl}}/api/todos/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "title": "Learn NextJs",
+    "description": "Build a professional multi-user Todo API",
+    "status": "Pending",
+    "priority": "High"
+}
+
+### retrive todos by id
+
+GET {{baseUrl}}/api/todos/1/
+Authorization: Bearer {{accessToken}}
+
+### update todos by id
+
+PATCH {{baseUrl}}/api/todos/1/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "status": "Completed"
+}
+
+###
+
+GET {{baseUrl}}/api/todos/?search=django
+Authorization: Bearer {{accessToken}}
+
+###
+
+GET {{baseUrl}}/api/todos/?status=pending
+Authorization: Bearer {{accessToken}}
+
+###
+
+GET {{baseUrl}}/api/todos/?priority=high
+Authorization: Bearer {{accessToken}}
+
+###
+
+GET {{baseUrl}}/api/todos/?ordering=-created_at
+Authorization: Bearer {{accessToken}}
+
+###
+
+GET {{baseUrl}}/api/todos/?page=1
+Authorization: Bearer {{accessToken}}
+
+### delete todos by id
+
+DELETE {{baseUrl}}/api/todos/1/
+Authorization: Bearer {{accessToken}}
