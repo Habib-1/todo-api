@@ -1,5 +1,5 @@
 @baseUrl = http://127.0.0.1:8000
-@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkxODI2MTI2LCJpYXQiOjE3OTE4MjQzMjYsImp0aSI6ImZmOGRlOGY4OGFhYzRiYzM5ODNhYjNlMThlNGM1ZGI5IiwidXNlcl9pZCI6IjEifQ.al5fr7EykOGFKbCGpYsoZjPXlS3J3Mb76QwP_yi9UPU
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkxODU5MDk5LCJpYXQiOjE3OTE4NTcyOTksImp0aSI6ImJlZmNmZGM1NzU3ZjQwY2Q5NGI2NzE3MzEwMmEzZTE1IiwidXNlcl9pZCI6IjIifQ.CKF1d7mhZeZj7ooV37GjeqJhb3FaGg4pc6Darz_QmIc
 @refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5MTkwOTg5OSwiaWF0IjoxNzkxODIzNDk5LCJqdGkiOiI1MDgwZTY4YTEwNWI0ODI2OTYzYzI0ZTc3NTdiNWZmZiIsInVzZXJfaWQiOiIyIn0.3wWB2uTGNo_f8jiGtZm8dCXwta_mkvlCWlwfoHEyr6U
 
 ### register a new user
@@ -21,8 +21,8 @@ POST {{baseUrl}}/auth/login/
 Content-Type: application/json
 
 {
-    "email": "admin@gmail.com",
-    "password": "admin123"
+    "email": "habib@gmail.com",
+    "password": "admin123@?"
 }
 
 ###
@@ -46,10 +46,10 @@ Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
-    "title": "Learn NextJs",
+    "title": "Learn React router",
     "description": "Build a professional multi-user Todo API",
     "status": "Pending",
-    "priority": "High"
+    "priority": "Low"
 }
 
 ### retrive todos by id
@@ -69,17 +69,17 @@ Content-Type: application/json
 
 ###
 
-GET {{baseUrl}}/api/todos/?search=django
+GET {{baseUrl}}/api/todos/?search=nextjs
+Authorization: Bearer {{accessToken}}
+
+### filtering by priority and status
+
+GET {{baseUrl}}/api/todos/?status=Pending
 Authorization: Bearer {{accessToken}}
 
 ###
 
-GET {{baseUrl}}/api/todos/?status=pending
-Authorization: Bearer {{accessToken}}
-
-###
-
-GET {{baseUrl}}/api/todos/?priority=high
+GET {{baseUrl}}/api/todos/?priority=High
 Authorization: Bearer {{accessToken}}
 
 ###
@@ -89,10 +89,10 @@ Authorization: Bearer {{accessToken}}
 
 ###
 
-GET {{baseUrl}}/api/todos/?page=1
+GET {{baseUrl}}/api/todos/?page=2
 Authorization: Bearer {{accessToken}}
 
 ### delete todos by id
 
-DELETE {{baseUrl}}/api/todos/1/
+DELETE {{baseUrl}}/api/todos/4/
 Authorization: Bearer {{accessToken}}
