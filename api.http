@@ -1,6 +1,6 @@
 @baseUrl = http://127.0.0.1:8000
-@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkxODU5MDk5LCJpYXQiOjE3OTE4NTcyOTksImp0aSI6ImJlZmNmZGM1NzU3ZjQwY2Q5NGI2NzE3MzEwMmEzZTE1IiwidXNlcl9pZCI6IjIifQ.CKF1d7mhZeZj7ooV37GjeqJhb3FaGg4pc6Darz_QmIc
-@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5MTkwOTg5OSwiaWF0IjoxNzkxODIzNDk5LCJqdGkiOiI1MDgwZTY4YTEwNWI0ODI2OTYzYzI0ZTc3NTdiNWZmZiIsInVzZXJfaWQiOiIyIn0.3wWB2uTGNo_f8jiGtZm8dCXwta_mkvlCWlwfoHEyr6U
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkxODYwNTI5LCJpYXQiOjE3OTE4NTg3MjksImp0aSI6IjI2Y2UzYjY1M2FmOTRhM2U4NDZiMTQ4MWQ1ZDMxMDExIiwidXNlcl9pZCI6IjIifQ.0oXGnspfQ1N8ixVATHtLUZVQE2Vukm8krKQW_XhgSb8
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5MTk0NTEyOSwiaWF0IjoxNzkxODU4NzI5LCJqdGkiOiI2ZmQzM2Q3ZGIwZTU0ZmVhOWI0YjIyZmNmOWI3NjY4ZiIsInVzZXJfaWQiOiIyIn0.OXC7vYoQLzHTUqS8K30WoaU8p5wyy2vEPr9OyVadRSU
 
 ### register a new user
 POST {{baseUrl}}/auth/register/
@@ -96,3 +96,13 @@ Authorization: Bearer {{accessToken}}
 
 DELETE {{baseUrl}}/api/todos/4/
 Authorization: Bearer {{accessToken}}
+
+
+### logout user by blocking refresh token
+POST {{baseUrl}}/auth/logout/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "refresh_token": "{{refreshToken}}"
+}
