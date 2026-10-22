@@ -9,6 +9,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
+from django.db.models import Q
 
 # class TodoViewSet(viewsets.ModelViewSet):
 #     permission_classes=[IsAuthenticated]
@@ -34,9 +36,32 @@ from rest_framework.response import Response
 def todos_list_create_view(request):
 
     if request.method == "GET":
+
         todos=Todo.objects.filter(user=request.user)
-        serializer=ToDoSerializer(todos,many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+
+        status_value=request.query_params.get('status')
+        priority=request.query_params.get('priority')
+        if status_value:
+            todos=todos.filter(status=status_value)
+        if priority :
+            todos=todos.filter(priority=priority)
+
+        search=request.query_params.get('search')
+        if search:
+            todos=todos.filter(Q(title__icontains=search) | Q(description__icontains=search))
+
+        ordering=request.query_params.get('ordering') or "id"
+        allowed_fields=["id","created_at"]
+        if ordering.lstrip("-") in allowed_fields:
+            todos=todos.order_by(ordering)
+        else :
+            todos=todos.order_by("id")
+
+        paginator=PageNumberPagination()
+        page=paginator.paginate_queryset(todos,request)
+        
+        serializer=ToDoSerializer(page,many=True)
+        return paginator.get_paginated_response(serializer.data)
     
     elif request.method == "POST":
         serializer=ToDoSerializer(data=request.data)
