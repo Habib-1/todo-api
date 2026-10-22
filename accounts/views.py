@@ -26,3 +26,5 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as error:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+

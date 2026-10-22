@@ -1,0 +1,86 @@
+@baseUrl = http://127.0.0.1:8000
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkyNjUwNDIyLCJpYXQiOjE3OTI2NDg2MjIsImp0aSI6IjM2YTJjYzRhOTBmYzRjZTE4OTE3ZDM1YTFmZWIyOTY4IiwidXNlcl9pZCI6IjIifQ.xCVui9KeWN4zFVwy5ZA460fW3eE2m3N181g9jXlDjjc
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5MTk0NTEyOSwiaWF0IjoxNzkxODU4NzI5LCJqdGkiOiI2ZmQzM2Q3ZGIwZTU0ZmVhOWI0YjIyZmNmOWI3NjY4ZiIsInVzZXJfaWQiOiIyIn0.OXC7vYoQLzHTUqS8K30WoaU8p5wyy2vEPr9OyVadRSU
+### register a new user
+POST {{baseUrl}}/auth/register/
+Content-Type: application/json
+
+{
+    "email": "habib@gmail.com",
+    "first_name":"Habib",
+    "last_name":"Biswas",
+    "password": "admin123@?",
+    "password2": "admin123@?"
+}
+
+### login registered user
+
+
+POST {{baseUrl}}/auth/login/
+Content-Type: application/json
+
+{
+    "email": "habib@gmail.com",
+    "password": "admin123@?"
+}
+
+###
+
+POST {{baseUrl}}/auth/token/refresh/
+Content-Type: application/json
+
+{
+    "refresh": "{{refreshToken}}"
+}
+
+### get todo list
+
+GET {{baseUrl}}/api/todos/
+Authorization: Bearer {{accessToken}}
+
+###create new todo
+
+POST {{baseUrl}}/api/todos/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "title": "Learn django testing",
+    "description": "Build a professional multi-user Todo API test api using django testing",
+    "status": "Pending",
+    "priority": "High"
+}
+
+### retrive todos by id
+
+GET {{baseUrl}}/api/todos/9/
+Authorization: Bearer {{accessToken}}
+
+
+### pertial update
+
+PATCH {{baseUrl}}/api/todos/9/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "status": "Completed"
+}
+
+
+###full update 
+PUT {{baseUrl}}/api/todos/9/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "title": "Learn django testing with pytest",
+    "description": "Build a professional multi-user Todo API test api using django testing and pytest",
+    "status": "Pending",
+    "priority": "Low"
+}
+
+### delete todo
+
+DELETE {{baseUrl}}/api/todos/10/
+Authorization: Bearer {{accessToken}}
