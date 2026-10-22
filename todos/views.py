@@ -47,10 +47,6 @@ def todos_list_create_view(request):
 
 
 
-
-
-
-
 @api_view(['GET','PUT','PATCH','DELETE'])
 @permission_classes([IsAuthenticated])
 def todos_retrieve_create_update_view(request,pk):

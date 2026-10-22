@@ -1,14 +1,14 @@
 @baseUrl = http://127.0.0.1:8000
-@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkyNjUwNDIyLCJpYXQiOjE3OTI2NDg2MjIsImp0aSI6IjM2YTJjYzRhOTBmYzRjZTE4OTE3ZDM1YTFmZWIyOTY4IiwidXNlcl9pZCI6IjIifQ.xCVui9KeWN4zFVwy5ZA460fW3eE2m3N181g9jXlDjjc
-@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5MTk0NTEyOSwiaWF0IjoxNzkxODU4NzI5LCJqdGkiOiI2ZmQzM2Q3ZGIwZTU0ZmVhOWI0YjIyZmNmOWI3NjY4ZiIsInVzZXJfaWQiOiIyIn0.OXC7vYoQLzHTUqS8K30WoaU8p5wyy2vEPr9OyVadRSU
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkyNjUyNzI4LCJpYXQiOjE3OTI2NTA5MjgsImp0aSI6IjkzOGZkMmZlM2QyNjQ0ZDE5NjE3M2U3YTI4ZjY0NDAzIiwidXNlcl9pZCI6IjIifQ.UgOmmWAgXCfNeTGWtqojPLc8a8Il58S1lOAEn9gSHbc
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5MjczNzMyOCwiaWF0IjoxNzkyNjUwOTI4LCJqdGkiOiIxZGU5OGJlY2M0NTY0NDlhYjA1MmQ1ZWYwMTZmM2NlYyIsInVzZXJfaWQiOiIyIn0.9WrL_AxC9meryr1o_Nr08oE1Qnueb47mJnwS6_Qmd4I
 ### register a new user
 POST {{baseUrl}}/auth/register/
 Content-Type: application/json
 
 {
-    "email": "habib@gmail.com",
-    "first_name":"Habib",
-    "last_name":"Biswas",
+    "email": "abc@gmail.com",
+    "first_name":"abcd",
+    "last_name":"efg",
     "password": "admin123@?",
     "password2": "admin123@?"
 }
@@ -31,6 +31,16 @@ Content-Type: application/json
 
 {
     "refresh": "{{refreshToken}}"
+}
+
+### logout
+
+POST {{baseUrl}}/auth/logout/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "refresh_token": "{{refreshToken}}"
 }
 
 ### get todo list
